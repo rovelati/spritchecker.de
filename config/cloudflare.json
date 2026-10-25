@@ -1,0 +1,10 @@
+{
+  "email": "romolo.velati@gmail.com",
+  "account_id": "383050c9ba92a1ab1144bc18d44f586c",
+  "api_token": "ENV_CLOUDFLARE_API_TOKEN",
+  "domain": "spritchecker.de",
+  "project_name": "spritchecker-de",
+  "build_command": "npm run build",
+  "build_output_directory": "dist",
+  "compatibility_date": "2026-03-01"
+}

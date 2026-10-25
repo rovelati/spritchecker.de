@@ -1,0 +1,403 @@
+---
+import Layout from '../layouts/Layout.astro';
+import bundeslaender from '../../data/bundeslaender.json';
+import topCities from '../../data/top_cities.json';
+
+const title = "SpritChecker.de — Spritpreise aktuell & Günstig tanken in der Nähe";
+const description = "Aktuelle Benzin- und Dieselpreise in Deutschland vergleichen. Finde die günstigste Tankstelle für Super E5, Super E10 und Diesel mit offiziellen Daten des Bundeskartellamtes.";
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-16 px-4 overflow-hidden border-b border-zinc-800/80 bg-gradient-to-b from-zinc-900/60 to-zinc-950">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Offizielle Echtzeit-Daten der Markttransparenzstelle (MTS-K)
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white mb-4">
+        Spritpreise aktuell: <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">Günstig tanken</span> in deiner Nähe
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto mb-8">
+        Vergleiche die aktuellen Preise für <strong>Super E5</strong>, <strong>Super E10</strong> und <strong>Diesel</strong> an über 15.000 Tankstellen bundesweit.
+      </p>
+
+      <!-- Search & Geolocation Box -->
+      <div id="suche" class="max-w-xl mx-auto bg-zinc-900 border border-zinc-700/80 p-3 sm:p-4 rounded-2xl shadow-2xl shadow-black/80">
+        <div class="flex flex-col sm:flex-row gap-2.5">
+          <div class="relative flex-grow">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="PLZ oder Stadt (z.B. 10115 oder Berlin)..."
+              class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-colors"
+            />
+          </div>
+          <button
+            id="search-btn"
+            class="px-5 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold rounded-xl text-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
+          >
+            <svg class="w-4 h-4 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Preise finden
+          </button>
+        </div>
+
+        <div class="mt-3 flex items-center justify-between text-xs text-zinc-400 pt-2 border-t border-zinc-800">
+          <button
+            id="geolocate-btn"
+            class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-semibold cursor-pointer transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+            </svg>
+            In meiner Nähe suchen (GPS)
+          </button>
+          <span class="text-zinc-500 font-mono">Radius: 5 km</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fuel Selector & Map View -->
+  <section class="max-w-6xl mx-auto px-4 py-10">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Tankstellen-Radar</h2>
+        <p class="text-xs text-zinc-400">Wähle deine Kraftstoffart für den Direktvergleich</p>
+      </div>
+
+      <!-- Fuel Type Switcher -->
+      <div class="inline-flex p-1 bg-zinc-900 border border-zinc-800 rounded-xl">
+        <button
+          data-fuel="e10"
+          class="fuel-tab px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-emerald-500 text-zinc-950 cursor-pointer"
+        >
+          Super E10
+        </button>
+        <button
+          data-fuel="e5"
+          class="fuel-tab px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-zinc-400 hover:text-white cursor-pointer"
+        >
+          Super E5
+        </button>
+        <button
+          data-fuel="diesel"
+          class="fuel-tab px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-zinc-400 hover:text-white cursor-pointer"
+        >
+          Diesel
+        </button>
+      </div>
+    </div>
+
+    <!-- Interactive Leaflet Map Container -->
+    <div class="relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl mb-8">
+      <div id="map" class="w-full h-[420px] bg-zinc-950"></div>
+      <div id="loading-overlay" class="hidden absolute inset-0 bg-zinc-950/80 backdrop-blur-xs flex items-center justify-center z-20">
+        <div class="flex items-center gap-3 text-emerald-400 text-sm font-semibold">
+          <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+          Aktuelle Preise werden geladen...
+        </div>
+      </div>
+    </div>
+
+    <!-- Station Results Grid -->
+    <div id="stations-container">
+      <h3 class="text-lg font-bold text-white mb-4 flex items-center justify-between">
+        <span>Günstigste Tankstellen im Umkreis</span>
+        <span id="stations-count" class="text-xs font-mono text-zinc-400 font-normal"></span>
+      </h3>
+      <div id="stations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Cities Grid (Internal Linking & Programmatic SEO) -->
+  <section id="staedte" class="max-w-6xl mx-auto px-4 py-12 border-t border-zinc-800">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h2 class="text-2xl sm:text-3xl font-black text-white mb-3">Spritpreise in den größten Städten</h2>
+      <p class="text-sm text-zinc-400">Wähle eine Stadt, um die günstigsten Tankstellen und aktuellen Benzinpreise direkt anzuzeigen.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+      {topCities.map(city => (
+        <button
+          onclick={`window.searchCity('${city.name}', ${city.lat}, ${city.lng})`}
+          class="p-3 bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-800 hover:border-emerald-500/50 rounded-xl text-left transition-all group cursor-pointer"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">{city.name}</div>
+          <div class="text-[11px] text-zinc-500">{city.state}</div>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Bundesländer Navigation -->
+  <section class="max-w-6xl mx-auto px-4 py-12 border-t border-zinc-800">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h2 class="text-2xl sm:text-3xl font-black text-white mb-3">Preise nach Bundesland</h2>
+      <p class="text-sm text-zinc-400">Tankstellenübersicht für alle 16 deutschen Bundesländer.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {bundeslaender.map(land => (
+        <button
+          onclick={`window.searchCity('${land.name}', ${land.lat}, ${land.lng})`}
+          class="p-4 bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 rounded-xl text-left transition-all hover:scale-[1.02] cursor-pointer group"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">{land.name}</div>
+          <div class="text-xs text-zinc-500 mt-1">Landeshauptstadt: {land.capital}</div>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- SEO Content & FAQ Section -->
+  <section id="faq" class="max-w-4xl mx-auto px-4 py-12 border-t border-zinc-800">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl sm:text-3xl font-black text-white mb-2">Häufige Fragen zu Spritpreisen in Deutschland</h2>
+      <p class="text-sm text-zinc-400">Tipps zum clever und billiger tanken.</p>
+    </div>
+
+    <div class="space-y-4">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <h3 class="text-base font-bold text-white mb-2">Wann ist Tanken in Deutschland am günstigsten?</h3>
+        <p class="text-sm text-zinc-300 leading-relaxed">
+          Statistiken des Bundeskartellamtes und des ADAC belegen, dass die Kraftstoffpreise im Tagesverlauf stark schwanken. In der Regel ist Sprit zwischen <strong>18:00 und 22:00 Uhr</strong> am günstigsten. Am teuersten ist das Tanken morgens zwischen 06:00 und 09:00 Uhr sowie nachts auf Autobahnen.
+        </p>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <h3 class="text-base font-bold text-white mb-2">Was ist der Unterschied zwischen Super E5 und Super E10?</h3>
+        <p class="text-sm text-zinc-300 leading-relaxed">
+          Super E10 enthält bis zu 10 % Bioethanol, während Super E5 maximal 5 % Bioethanol beigemischt hat. Super E10 ist in Deutschland fast immer 5 bis 6 Cent pro Liter günstiger als Super E5 und wird von über 90 % aller Benzin-Pkw problemlos vertragen.
+        </p>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <h3 class="text-base font-bold text-white mb-2">Woher stammen die aktuellen Preisdaten auf SpritChecker.de?</h3>
+        <p class="text-sm text-zinc-300 leading-relaxed">
+          Die Preise werden direkt von der offiziellen <strong>Markttransparenzstelle für Kraftstoffe (MTS-K)</strong> bezogen. Tankstellenbetreiber in Deutschland sind gesetzlich verpflichtet, jede Preisänderung innerhalb von wenigen Minuten an das Bundeskartellamt zu melden.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-side Map & Search Script -->
+  <script is:inline>
+    let map = null;
+    let markersLayer = null;
+    let currentFuel = 'e10';
+    let currentStations = [];
+    const API_KEY = '00000000-0000-0000-0000-000000000002'; // Demo Key (will be swapped with production key)
+
+    function initMap(lat = 52.520, lng = 13.405, zoom = 12) {
+      if (typeof L === 'undefined') return;
+      if (!map) {
+        map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], zoom);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '© OpenStreetMap-Mitwirkende'
+        }).addTo(map);
+        markersLayer = L.layerGroup().addTo(map);
+      } else {
+        map.setView([lat, lng], zoom);
+      }
+    }
+
+    async function fetchStations(lat, lng, rad = 5) {
+      const overlay = document.getElementById('loading-overlay');
+      if (overlay) overlay.classList.remove('hidden');
+
+      try {
+        const url = `https://creativecommons.tankerkoenig.de/json/list.php?lat=${lat}&lng=${lng}&rad=${rad}&sort=dist&type=all&apikey=${API_KEY}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.ok && data.stations) {
+          currentStations = data.stations;
+          renderStations();
+          updateMapMarkers();
+        }
+      } catch (err) {
+        console.error('Fehler beim Laden der Tankstellen:', err);
+      } finally {
+        if (overlay) overlay.classList.add('hidden');
+      }
+    }
+
+    function renderStations() {
+      const grid = document.getElementById('stations-grid');
+      const countEl = document.getElementById('stations-count');
+      if (!grid) return;
+
+      const validStations = currentStations.filter(s => s[currentFuel] && s[currentFuel] > 0);
+      validStations.sort((a, b) => a[currentFuel] - b[currentFuel]);
+
+      if (countEl) countEl.innerText = `${validStations.length} Tankstellen gefunden`;
+
+      if (validStations.length === 0) {
+        grid.innerHTML = '<div class="col-span-full py-8 text-center text-zinc-500">Keine geöffneten Tankstellen mit Preisen für die gewählte Sorte im Umkreis gefunden.</div>';
+        return;
+      }
+
+      const cheapestPrice = validStations[0][currentFuel];
+
+      grid.innerHTML = validStations.map((s, idx) => {
+        const isCheapest = s[currentFuel] === cheapestPrice;
+        const price = s[currentFuel].toFixed(3).replace('.', ',');
+        const fuelLabel = currentFuel === 'e10' ? 'Super E10' : currentFuel === 'e5' ? 'Super E5' : 'Diesel';
+
+        return `
+          <div class="bg-zinc-900 border ${isCheapest ? 'border-emerald-500/80 shadow-lg shadow-emerald-500/10' : 'border-zinc-800'} rounded-2xl p-4 flex flex-col justify-between transition-all hover:border-zinc-600">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">${s.brand || 'Freie Tankstelle'}</span>
+                ${isCheapest ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500 text-zinc-950 uppercase">Günstigste</span>' : ''}
+              </div>
+              <h4 class="text-base font-bold text-white mb-1 leading-snug">${s.name}</h4>
+              <p class="text-xs text-zinc-400">${s.street} ${s.houseNumber || ''}, ${s.postCode} ${s.place}</p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-zinc-400 block">${fuelLabel}</span>
+                <span class="text-2xl font-black ${isCheapest ? 'text-emerald-400' : 'text-white'}">${price} <span class="text-xs font-normal text-zinc-400">€/L</span></span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-semibold ${s.isOpen ? 'text-emerald-400' : 'text-red-400'} block">
+                  ${s.isOpen ? '● Geöffnet' : '○ Geschlossen'}
+                </span>
+                <span class="text-[11px] text-zinc-400">${s.dist ? s.dist.toFixed(1) + ' km entfernt' : ''}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateMapMarkers() {
+      if (!markersLayer || !map) return;
+      markersLayer.clearLayers();
+
+      const validStations = currentStations.filter(s => s[currentFuel] && s[currentFuel] > 0);
+      if (validStations.length === 0) return;
+
+      const cheapestPrice = Math.min(...validStations.map(s => s[currentFuel]));
+
+      validStations.forEach(s => {
+        const isCheapest = s[currentFuel] === cheapestPrice;
+        const price = s[currentFuel].toFixed(3).replace('.', ',');
+
+        const markerIcon = L.divIcon({
+          className: isCheapest ? 'pb-marker-cheapest' : 'pb-marker-standard',
+          html: `<div style="padding: 4px 8px; border-radius: 9999px; font-size: 11px; white-space: nowrap;">${price} €</div>`,
+          iconSize: [64, 26],
+          iconAnchor: [32, 13]
+        });
+
+        const marker = L.marker([s.lat, s.lng], { icon: markerIcon });
+        marker.bindPopup(`
+          <div style="font-family: inherit;">
+            <strong style="color: #10b981; font-size: 13px;">${s.brand || s.name}</strong><br/>
+            <span style="font-size: 11px; color: #a1a1aa;">${s.street}, ${s.place}</span><br/>
+            <div style="margin-top: 6px; font-size: 14px; font-weight: bold;">${price} €/L (${currentFuel.toUpperCase()})</div>
+          </div>
+        `);
+        markersLayer.addLayer(marker);
+      });
+    }
+
+    // Global helper for city / bundesland click
+    window.searchCity = function(name, lat, lng) {
+      if (map) map.setView([lat, lng], 13);
+      fetchStations(lat, lng, 6);
+      window.scrollTo({ top: 350, behavior: 'smooth' });
+    };
+
+    // DOM Ready Setup
+    document.addEventListener('DOMContentLoaded', () => {
+      initMap();
+      fetchStations(52.520, 13.405, 5); // Default Berlin
+
+      // Fuel switcher tabs
+      document.querySelectorAll('.fuel-tab').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.fuel-tab').forEach(b => {
+            b.classList.remove('bg-emerald-500', 'text-zinc-950');
+            b.classList.add('text-zinc-400');
+          });
+          const target = e.currentTarget;
+          target.classList.add('bg-emerald-500', 'text-zinc-950');
+          target.classList.remove('text-zinc-400');
+          currentFuel = target.getAttribute('data-fuel') || 'e10';
+          renderStations();
+          updateMapMarkers();
+        });
+      });
+
+      // Geolocation button
+      const geoBtn = document.getElementById('geolocate-btn');
+      if (geoBtn) {
+        geoBtn.addEventListener('click', () => {
+          if (!navigator.geolocation) {
+            alert('Geolokalisierung wird von Ihrem Browser nicht unterstützt.');
+            return;
+          }
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const { latitude, longitude } = pos.coords;
+              if (map) map.setView([latitude, longitude], 13);
+              fetchStations(latitude, longitude, 5);
+            },
+            (err) => {
+              alert('Standortabfrage fehlgeschlagen: ' + err.message);
+            }
+          );
+        });
+      }
+
+      // Search button
+      const searchBtn = document.getElementById('search-btn');
+      const searchInput = document.getElementById('search-input');
+      if (searchBtn && searchInput) {
+        const doSearch = async () => {
+          const query = searchInput.value.trim();
+          if (!query) return;
+
+          // Geocoding via free OpenStreetMap Nominatim
+          try {
+            const geoUrl = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=de&q=${encodeURIComponent(query)}`;
+            const res = await fetch(geoUrl, { headers: { 'Accept-Language': 'de' } });
+            const results = await res.json();
+            if (results && results.length > 0) {
+              const { lat, lon } = results[0];
+              const latitude = parseFloat(lat);
+              const longitude = parseFloat(lon);
+              if (map) map.setView([latitude, longitude], 13);
+              fetchStations(latitude, longitude, 6);
+            } else {
+              alert('Ort oder PLZ in Deutschland nicht gefunden.');
+            }
+          } catch (e) {
+            console.error('Geocoding error:', e);
+          }
+        };
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') doSearch();
+        });
+      }
+    });
+  </script>
+</Layout>

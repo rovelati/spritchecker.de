@@ -1,0 +1,18 @@
+[
+  { "slug": "baden-wuerttemberg", "name": "Baden-Württemberg", "capital": "Stuttgart", "lat": 48.7758, "lng": 9.1829 },
+  { "slug": "bayern", "name": "Bayern", "capital": "München", "lat": 48.1351, "lng": 11.5820 },
+  { "slug": "berlin", "name": "Berlin", "capital": "Berlin", "lat": 52.5200, "lng": 13.4050 },
+  { "slug": "brandenburg", "name": "Brandenburg", "capital": "Potsdam", "lat": 52.3906, "lng": 13.0645 },
+  { "slug": "bremen", "name": "Bremen", "capital": "Bremen", "lat": 53.0793, "lng": 8.8017 },
+  { "slug": "hamburg", "name": "Hamburg", "capital": "Hamburg", "lat": 53.5511, "lng": 9.9937 },
+  { "slug": "hessen", "name": "Hessen", "capital": "Wiesbaden", "lat": 50.0782, "lng": 8.2398 },
+  { "slug": "mecklenburg-vorpommern", "name": "Mecklenburg-Vorpommern", "capital": "Schwerin", "lat": 53.6355, "lng": 11.4012 },
+  { "slug": "niedersachsen", "name": "Niedersachsen", "capital": "Hannover", "lat": 52.3759, "lng": 9.7320 },
+  { "slug": "nordrhein-westfalen", "name": "Nordrhein-Westfalen", "capital": "Düsseldorf", "lat": 51.2277, "lng": 6.7735 },
+  { "slug": "rheinland-pfalz", "name": "Rheinland-Pfalz", "capital": "Mainz", "lat": 49.9929, "lng": 8.2473 },
+  { "slug": "saarland", "name": "Saarland", "capital": "Saarbrücken", "lat": 49.2402, "lng": 6.9969 },
+  { "slug": "sachsen", "name": "Sachsen", "capital": "Dresden", "lat": 51.0504, "lng": 13.7373 },
+  { "slug": "sachsen-anhalt", "name": "Sachsen-Anhalt", "capital": "Magdeburg", "lat": 52.1205, "lng": 11.6276 },
+  { "slug": "schleswig-holstein", "name": "Schleswig-Holstein", "capital": "Kiel", "lat": 54.3233, "lng": 10.1228 },
+  { "slug": "thueringen", "name": "Thüringen", "capital": "Erfurt", "lat": 50.9848, "lng": 11.0299 }
+]

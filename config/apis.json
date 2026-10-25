@@ -1,0 +1,10 @@
+{
+  "provider": "Tankerkönig (MTS-K Bundeskartellamt)",
+  "registration_url": "https://creativecommons.tankerkoenig.de/#register",
+  "api_endpoint_list": "https://creativecommons.tankerkoenig.de/json/list.php",
+  "api_endpoint_prices": "https://creativecommons.tankerkoenig.de/json/prices.php",
+  "api_endpoint_detail": "https://creativecommons.tankerkoenig.de/json/detail.php",
+  "demo_api_key": "00000000-0000-0000-0000-000000000002",
+  "api_key": "00000000-0000-0000-0000-000000000002",
+  "notes": "Replace demo_api_key with personal free API key obtained from creativecommons.tankerkoenig.de"
+}
