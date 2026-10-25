@@ -1,0 +1,15 @@
+---
+import CityDetail from '@components/CityDetail.astro';
+import cities from '@data/german_cities.json';
+
+export async function getStaticPaths() {
+  return cities.map(city => ({
+    params: { slug: `stadt-${city.slug}` },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+---
+
+<CityDetail city={city} fuelType="all" />

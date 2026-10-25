@@ -1,0 +1,277 @@
+---
+import Layout from '../layouts/Layout.astro';
+import cities from '@data/german_cities.json';
+
+interface City {
+  name: string;
+  slug: string;
+  lat: number;
+  lng: number;
+}
+
+interface Props {
+  city: City;
+  fuelType?: 'all' | 'diesel' | 'e10' | 'e5';
+}
+
+const { city, fuelType = 'all' } = Astro.props;
+
+const fuelNames: Record<string, string> = {
+  all: 'Spritpreise (Super E10, E5, Diesel)',
+  diesel: 'Dieselpreise',
+  e10: 'Super E10 Preise',
+  e5: 'Super E5 (Benzin) Preise'
+};
+
+const fuelTitle = fuelNames[fuelType];
+
+const title = fuelType === 'all'
+  ? `Tankstellen in ${city.name} — Aktuelle Spritpreise & Günstig tanken | SpritChecker.de`
+  : `${fuelTitle} in ${city.name} aktuell — Günstigste Tankstelle heute | SpritChecker.de`;
+
+const description = fuelType === 'all'
+  ? `Aktuelle Benzin- und Dieselpreise in ${city.name}. Finde jetzt die günstigste Tankstelle für Super E10, Super E5 und Diesel in ${city.name} und Umgebung.`
+  : `Günstig ${fuelTitle.toLowerCase()} in ${city.name} tanken. Echtzeit-Preise und Preisvergleich an allen Tankstellen im Raum ${city.name}.`;
+
+const canonical = fuelType === 'all'
+  ? `https://spritchecker.de/tankstellen/stadt-${city.slug}/`
+  : `https://spritchecker.de/tankstellen/stadt-${city.slug}/${fuelType}/`;
+
+// Find 8 nearby or alternative cities for cross-linking
+const otherCities = cities.filter(c => c.slug !== city.slug).slice(0, 8);
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+  <!-- Breadcrumb -->
+  <nav class="max-w-6xl mx-auto px-4 pt-6 text-xs text-zinc-400 flex items-center gap-2 flex-wrap">
+    <a href="/" class="hover:text-emerald-400">Startseite</a>
+    <span>›</span>
+    <a href="/#staedte" class="hover:text-emerald-400">Tankstellen</a>
+    <span>›</span>
+    {fuelType === 'all' ? (
+      <span class="text-white font-semibold">{city.name}</span>
+    ) : (
+      <>
+        <a href={`/tankstellen/stadt-${city.slug}/`} class="hover:text-emerald-400">{city.name}</a>
+        <span>›</span>
+        <span class="text-white font-semibold">{fuelTitle}</span>
+      </>
+    )}
+  </nav>
+
+  <!-- Hero Header -->
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Offizielle MTS-K Preisdaten
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        {fuelType === 'all' ? (
+          <>Tankstellen & Spritpreise in <span class="text-emerald-400">{city.name}</span></>
+        ) : (
+          <>{fuelTitle} in <span class="text-emerald-400">{city.name}</span> aktuell</>
+        )}
+      </h1>
+
+      <p class="text-zinc-300 text-sm sm:text-base max-w-3xl leading-relaxed mb-6">
+        Finde die günstigste Tankstelle in <strong>{city.name}</strong> und spare bei jeder Tankfüllung. Die Kraftstoffpreise werden live aus der Markttransparenzstelle für Kraftstoffe des Bundeskartellamtes aktualisiert.
+      </p>
+
+      <!-- Fuel Type Filter Tabs -->
+      <div class="flex flex-wrap gap-2 pt-2 border-t border-zinc-800/80">
+        <a
+          href={`/tankstellen/stadt-${city.slug}/`}
+          class={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${fuelType === 'all' ? 'bg-emerald-500 text-zinc-950' : 'bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+        >
+          Alle Kraftstoffe
+        </a>
+        <a
+          href={`/tankstellen/stadt-${city.slug}/super-e10/`}
+          class={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${fuelType === 'e10' ? 'bg-emerald-500 text-zinc-950' : 'bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+        >
+          Super E10
+        </a>
+        <a
+          href={`/tankstellen/stadt-${city.slug}/super-e5/`}
+          class={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${fuelType === 'e5' ? 'bg-emerald-500 text-zinc-950' : 'bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+        >
+          Super E5
+        </a>
+        <a
+          href={`/tankstellen/stadt-${city.slug}/diesel/`}
+          class={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${fuelType === 'diesel' ? 'bg-emerald-500 text-zinc-950' : 'bg-zinc-800/80 text-zinc-300 hover:text-white hover:bg-zinc-800'}`}
+        >
+          Diesel
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map & Stations List -->
+  <section class="max-w-6xl mx-auto px-4 py-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl mb-8">
+      <div id="city-map" class="w-full h-[400px] bg-zinc-950"></div>
+    </div>
+
+    <!-- Stations Results Container -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold text-white mb-4 flex items-center justify-between">
+        <span>Günstigste Tankstellen in {city.name}</span>
+        <span id="city-stations-count" class="text-xs font-mono text-zinc-400 font-normal"></span>
+      </h2>
+      <div id="city-stations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Dynamically loaded via client script -->
+      </div>
+    </div>
+  </section>
+
+  <!-- City Specific SEO Guide & FAQ -->
+  <section class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800">
+    <h2 class="text-2xl font-black text-white mb-6 text-center">Häufige Fragen zu Tankstellen in {city.name}</h2>
+
+    <div class="space-y-4">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <h3 class="text-base font-bold text-white mb-2">Wann tankt man in {city.name} am günstigsten?</h3>
+        <p class="text-sm text-zinc-300 leading-relaxed">
+          In {city.name} sind Kraftstoffe in den frühen Abendstunden zwischen <strong>18:00 und 22:00 Uhr</strong> am preiswertesten. Morgens zwischen 06:00 und 09:00 Uhr ist der Spritpreis in der Regel um 5 bis 12 Cent pro Liter teurer.
+        </p>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <h3 class="text-base font-bold text-white mb-2">Wie oft ändern sich die Benzin- und Dieselpreise in {city.name}?</h3>
+        <p class="text-sm text-zinc-300 leading-relaxed">
+          Große Marken wie Aral, Shell, Esso, JET und TotalEnergies passen ihre Preise in {city.name} bis zu 15-mal täglich an. Dank der Anbindung an die Markttransparenzstelle siehst du auf SpritChecker.de jede Preisänderung innerhalb von Minuten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Cities Linking Grid -->
+  <section class="max-w-6xl mx-auto px-4 py-12 border-t border-zinc-800">
+    <h2 class="text-xl font-bold text-white mb-4">Spritpreise in weiteren Städten</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {otherCities.map(c => (
+        <a
+          href={`/tankstellen/stadt-${c.slug}/`}
+          class="p-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-emerald-500/40 rounded-xl text-left transition-colors group block"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">{c.name}</div>
+          <div class="text-xs text-zinc-500">Tankstellen vergleichen</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Breadcrumb Schema Markup -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Startseite",
+        "item": "https://spritchecker.de/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": `Tankstellen ${city.name}`,
+        "item": canonical
+      }
+    ]
+  })} />
+
+  <!-- Client-side Map Script for City -->
+  <script is:inline define:vars={{ cityLat: city.lat, cityLng: city.lng, defaultFuel: fuelType === 'all' ? 'e10' : fuelType }}>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof L === 'undefined') return;
+
+      const map = L.map('city-map', { scrollWheelZoom: false }).setView([cityLat, cityLng], 12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+
+      const markers = L.layerGroup().addTo(map);
+      const API_KEY = '00000000-0000-0000-0000-000000000002';
+      const url = `https://creativecommons.tankerkoenig.de/json/list.php?lat=${cityLat}&lng=${cityLng}&rad=6&sort=dist&type=all&apikey=${API_KEY}`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (!data.ok || !data.stations) return;
+          const stations = data.stations.filter(s => s[defaultFuel] && s[defaultFuel] > 0);
+          stations.sort((a, b) => a[defaultFuel] - b[defaultFuel]);
+
+          const countEl = document.getElementById('city-stations-count');
+          if (countEl) countEl.innerText = `${stations.length} Tankstellen gefunden`;
+
+          const grid = document.getElementById('city-stations-grid');
+          if (!grid) return;
+
+          if (stations.length === 0) {
+            grid.innerHTML = '<div class="col-span-full py-8 text-center text-zinc-500">Keine Tankstellen mit aktuellen Preisen für diese Sorte im Umkreis gefunden.</div>';
+            return;
+          }
+
+          const cheapest = stations[0][defaultFuel];
+
+          grid.innerHTML = stations.map(s => {
+            const isCheapest = s[defaultFuel] === cheapest;
+            const price = s[defaultFuel].toFixed(3).replace('.', ',');
+            const fuelLabel = defaultFuel === 'e10' ? 'Super E10' : defaultFuel === 'e5' ? 'Super E5' : 'Diesel';
+
+            return `
+              <div class="bg-zinc-900 border ${isCheapest ? 'border-emerald-500 shadow-lg shadow-emerald-500/10' : 'border-zinc-800'} rounded-2xl p-4 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">${s.brand || 'Frei'}</span>
+                    ${isCheapest ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500 text-zinc-950 uppercase">Günstigste</span>' : ''}
+                  </div>
+                  <h3 class="text-base font-bold text-white mb-1">${s.name}</h3>
+                  <p class="text-xs text-zinc-400">${s.street} ${s.houseNumber || ''}, ${s.postCode} ${s.place}</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between">
+                  <div>
+                    <span class="text-[11px] text-zinc-400 block">${fuelLabel}</span>
+                    <span class="text-2xl font-black ${isCheapest ? 'text-emerald-400' : 'text-white'}">${price} <span class="text-xs font-normal text-zinc-400">€/L</span></span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-xs font-semibold ${s.isOpen ? 'text-emerald-400' : 'text-red-400'} block">
+                      ${s.isOpen ? '● Geöffnet' : '○ Geschlossen'}
+                    </span>
+                    <span class="text-[11px] text-zinc-400">${s.dist ? s.dist.toFixed(1) + ' km' : ''}</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          // Map markers
+          stations.forEach(s => {
+            const isCheapest = s[defaultFuel] === cheapest;
+            const price = s[defaultFuel].toFixed(3).replace('.', ',');
+            const markerIcon = L.divIcon({
+              className: isCheapest ? 'pb-marker-cheapest' : 'pb-marker-standard',
+              html: `<div style="padding: 4px 8px; border-radius: 9999px; font-size: 11px; white-space: nowrap;">${price} €</div>`,
+              iconSize: [64, 26],
+              iconAnchor: [32, 13]
+            });
+            const marker = L.marker([s.lat, s.lng], { icon: markerIcon });
+            marker.bindPopup(`
+              <div style="font-family: inherit;">
+                <strong style="color: #10b981;">${s.brand || s.name}</strong><br/>
+                <span style="font-size: 11px; color: #a1a1aa;">${s.street}, ${s.place}</span><br/>
+                <div style="margin-top: 6px; font-size: 14px; font-weight: bold;">${price} €/L</div>
+              </div>
+            `);
+            markers.addLayer(marker);
+          });
+        })
+        .catch(console.error);
+    });
+  </script>
+</Layout>

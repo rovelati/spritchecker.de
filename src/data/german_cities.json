@@ -1,0 +1,914 @@
+[
+  {
+    "name": "Berlin",
+    "slug": "berlin",
+    "lat": 52.52437,
+    "lng": 13.41053
+  },
+  {
+    "name": "Hamburg",
+    "slug": "hamburg",
+    "lat": 53.55073,
+    "lng": 9.99302
+  },
+  {
+    "name": "München",
+    "slug": "muenchen",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Köln",
+    "slug": "koeln",
+    "lat": 50.93333,
+    "lng": 6.95
+  },
+  {
+    "name": "Frankfurt am Main",
+    "slug": "frankfurt-am-main",
+    "lat": 50.11552,
+    "lng": 8.68417
+  },
+  {
+    "name": "Stuttgart",
+    "slug": "stuttgart",
+    "lat": 48.78232,
+    "lng": 9.17702
+  },
+  {
+    "name": "Düsseldorf",
+    "slug": "duesseldorf",
+    "lat": 51.22319,
+    "lng": 6.77927
+  },
+  {
+    "name": "Leipzig",
+    "slug": "leipzig",
+    "lat": 51.33962,
+    "lng": 12.37129
+  },
+  {
+    "name": "Dortmund",
+    "slug": "dortmund",
+    "lat": 51.51494,
+    "lng": 7.466
+  },
+  {
+    "name": "Essen",
+    "slug": "essen",
+    "lat": 51.45657,
+    "lng": 7.01228
+  },
+  {
+    "name": "Bremen",
+    "slug": "bremen",
+    "lat": 53.07582,
+    "lng": 8.80717
+  },
+  {
+    "name": "Dresden",
+    "slug": "dresden",
+    "lat": 51.05089,
+    "lng": 13.73832
+  },
+  {
+    "name": "Hannover",
+    "slug": "hannover",
+    "lat": 52.37052,
+    "lng": 9.73322
+  },
+  {
+    "name": "Nürnberg",
+    "slug": "nuernberg",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Duisburg",
+    "slug": "duisburg",
+    "lat": 51.43247,
+    "lng": 6.76516
+  },
+  {
+    "name": "Bochum",
+    "slug": "bochum",
+    "lat": 51.48165,
+    "lng": 7.21648
+  },
+  {
+    "name": "Wuppertal",
+    "slug": "wuppertal",
+    "lat": 51.25627,
+    "lng": 7.14816
+  },
+  {
+    "name": "Bielefeld",
+    "slug": "bielefeld",
+    "lat": 52.03333,
+    "lng": 8.53333
+  },
+  {
+    "name": "Bonn",
+    "slug": "bonn",
+    "lat": 50.73438,
+    "lng": 7.09549
+  },
+  {
+    "name": "Münster",
+    "slug": "muenster",
+    "lat": 48.22904,
+    "lng": 10.63623
+  },
+  {
+    "name": "Mannheim",
+    "slug": "mannheim",
+    "lat": 49.4891,
+    "lng": 8.46694
+  },
+  {
+    "name": "Karlsruhe",
+    "slug": "karlsruhe",
+    "lat": 49.00937,
+    "lng": 8.40444
+  },
+  {
+    "name": "Augsburg",
+    "slug": "augsburg",
+    "lat": 48.37154,
+    "lng": 10.89851
+  },
+  {
+    "name": "Wiesbaden",
+    "slug": "wiesbaden",
+    "lat": 50.08601,
+    "lng": 8.24435
+  },
+  {
+    "name": "Mönchengladbach",
+    "slug": "moenchengladbach",
+    "lat": 51.18539,
+    "lng": 6.44172
+  },
+  {
+    "name": "Gelsenkirchen",
+    "slug": "gelsenkirchen",
+    "lat": 51.50508,
+    "lng": 7.09654
+  },
+  {
+    "name": "Aachen",
+    "slug": "aachen",
+    "lat": 50.77664,
+    "lng": 6.08342
+  },
+  {
+    "name": "Braunschweig",
+    "slug": "braunschweig",
+    "lat": 52.26594,
+    "lng": 10.52673
+  },
+  {
+    "name": "Kiel",
+    "slug": "kiel",
+    "lat": 54.32133,
+    "lng": 10.13489
+  },
+  {
+    "name": "Chemnitz",
+    "slug": "chemnitz",
+    "lat": 50.8357,
+    "lng": 12.92922
+  },
+  {
+    "name": "Halle (Saale)",
+    "slug": "halle-saale",
+    "lat": 51.48158,
+    "lng": 11.97947
+  },
+  {
+    "name": "Magdeburg",
+    "slug": "magdeburg",
+    "lat": 52.13129,
+    "lng": 11.63189
+  },
+  {
+    "name": "Freiburg im Breisgau",
+    "slug": "freiburg-im-breisgau",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Krefeld",
+    "slug": "krefeld",
+    "lat": 51.33645,
+    "lng": 6.55381
+  },
+  {
+    "name": "Mainz",
+    "slug": "mainz",
+    "lat": 49.98185,
+    "lng": 8.28008
+  },
+  {
+    "name": "Lübeck",
+    "slug": "luebeck",
+    "lat": 53.86893,
+    "lng": 10.68729
+  },
+  {
+    "name": "Erfurt",
+    "slug": "erfurt",
+    "lat": 50.97734,
+    "lng": 11.03536
+  },
+  {
+    "name": "Oberhausen",
+    "slug": "oberhausen",
+    "lat": 47.78333,
+    "lng": 11.13333
+  },
+  {
+    "name": "Rostock",
+    "slug": "rostock",
+    "lat": 54.0887,
+    "lng": 12.14049
+  },
+  {
+    "name": "Kassel",
+    "slug": "kassel",
+    "lat": 51.31667,
+    "lng": 9.5
+  },
+  {
+    "name": "Hagen",
+    "slug": "hagen",
+    "lat": 52.26787,
+    "lng": 10.52533
+  },
+  {
+    "name": "Potsdam",
+    "slug": "potsdam",
+    "lat": 52.39886,
+    "lng": 13.06566
+  },
+  {
+    "name": "Saarbrücken",
+    "slug": "saarbruecken",
+    "lat": 49.23262,
+    "lng": 7.00982
+  },
+  {
+    "name": "Hamm",
+    "slug": "hamm",
+    "lat": 51.68033,
+    "lng": 7.82089
+  },
+  {
+    "name": "Ludwigshafen am Rhein",
+    "slug": "ludwigshafen-am-rhein",
+    "lat": 49.48121,
+    "lng": 8.44641
+  },
+  {
+    "name": "Mülheim an der Ruhr",
+    "slug": "muelheim-an-der-ruhr",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Oldenburg",
+    "slug": "oldenburg",
+    "lat": 53.14039,
+    "lng": 8.21479
+  },
+  {
+    "name": "Osnabrück",
+    "slug": "osnabrueck",
+    "lat": 52.27264,
+    "lng": 8.0498
+  },
+  {
+    "name": "Leverkusen",
+    "slug": "leverkusen",
+    "lat": 51.0303,
+    "lng": 6.98432
+  },
+  {
+    "name": "Heidelberg",
+    "slug": "heidelberg",
+    "lat": 49.40768,
+    "lng": 8.69079
+  },
+  {
+    "name": "Darmstadt",
+    "slug": "darmstadt",
+    "lat": 49.87167,
+    "lng": 8.65027
+  },
+  {
+    "name": "Solingen",
+    "slug": "solingen",
+    "lat": 51.17343,
+    "lng": 7.0845
+  },
+  {
+    "name": "Regensburg",
+    "slug": "regensburg",
+    "lat": 49.01513,
+    "lng": 12.10161
+  },
+  {
+    "name": "Herne",
+    "slug": "herne",
+    "lat": 51.5388,
+    "lng": 7.22572
+  },
+  {
+    "name": "Paderborn",
+    "slug": "paderborn",
+    "lat": 51.71905,
+    "lng": 8.75439
+  },
+  {
+    "name": "Neuss",
+    "slug": "neuss",
+    "lat": 51.19807,
+    "lng": 6.68504
+  },
+  {
+    "name": "Ingolstadt",
+    "slug": "ingolstadt",
+    "lat": 48.76508,
+    "lng": 11.42372
+  },
+  {
+    "name": "Offenbach am Main",
+    "slug": "offenbach-am-main",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Fürth",
+    "slug": "fuerth",
+    "lat": 49.47593,
+    "lng": 10.98856
+  },
+  {
+    "name": "Ulm",
+    "slug": "ulm",
+    "lat": 48.39841,
+    "lng": 9.99155
+  },
+  {
+    "name": "Heilbronn",
+    "slug": "heilbronn",
+    "lat": 49.13995,
+    "lng": 9.22054
+  },
+  {
+    "name": "Pforzheim",
+    "slug": "pforzheim",
+    "lat": 48.88436,
+    "lng": 8.69892
+  },
+  {
+    "name": "Würzburg",
+    "slug": "wuerzburg",
+    "lat": 49.79391,
+    "lng": 9.95121
+  },
+  {
+    "name": "Wolfsburg",
+    "slug": "wolfsburg",
+    "lat": 52.4236,
+    "lng": 10.77597
+  },
+  {
+    "name": "Göttingen",
+    "slug": "goettingen",
+    "lat": 51.53443,
+    "lng": 9.93228
+  },
+  {
+    "name": "Bottrop",
+    "slug": "bottrop",
+    "lat": 51.52392,
+    "lng": 6.9285
+  },
+  {
+    "name": "Reutlingen",
+    "slug": "reutlingen",
+    "lat": 48.49144,
+    "lng": 9.20427
+  },
+  {
+    "name": "Koblenz",
+    "slug": "koblenz",
+    "lat": 50.35357,
+    "lng": 7.57883
+  },
+  {
+    "name": "Bremerhaven",
+    "slug": "bremerhaven",
+    "lat": 53.55357,
+    "lng": 8.57553
+  },
+  {
+    "name": "Recklinghausen",
+    "slug": "recklinghausen",
+    "lat": 51.61379,
+    "lng": 7.19738
+  },
+  {
+    "name": "Bergisch Gladbach",
+    "slug": "bergisch-gladbach",
+    "lat": 50.9856,
+    "lng": 7.13298
+  },
+  {
+    "name": "Erlangen",
+    "slug": "erlangen",
+    "lat": 49.59099,
+    "lng": 11.00783
+  },
+  {
+    "name": "Jena",
+    "slug": "jena",
+    "lat": 50.92878,
+    "lng": 11.5899
+  },
+  {
+    "name": "Remscheid",
+    "slug": "remscheid",
+    "lat": 51.17983,
+    "lng": 7.1925
+  },
+  {
+    "name": "Trier",
+    "slug": "trier",
+    "lat": 49.75565,
+    "lng": 6.63935
+  },
+  {
+    "name": "Salzgitter",
+    "slug": "salzgitter",
+    "lat": 52.15705,
+    "lng": 10.4154
+  },
+  {
+    "name": "Moers",
+    "slug": "moers",
+    "lat": 51.45342,
+    "lng": 6.6326
+  },
+  {
+    "name": "Siegen",
+    "slug": "siegen",
+    "lat": 50.87481,
+    "lng": 8.02431
+  },
+  {
+    "name": "Hildesheim",
+    "slug": "hildesheim",
+    "lat": 52.15077,
+    "lng": 9.95112
+  },
+  {
+    "name": "Cottbus",
+    "slug": "cottbus",
+    "lat": 51.75769,
+    "lng": 14.32888
+  },
+  {
+    "name": "Gütersloh",
+    "slug": "guetersloh",
+    "lat": 51.90693,
+    "lng": 8.37853
+  },
+  {
+    "name": "Kaiserslautern",
+    "slug": "kaiserslautern",
+    "lat": 49.443,
+    "lng": 7.77161
+  },
+  {
+    "name": "Witten",
+    "slug": "witten",
+    "lat": 51.44362,
+    "lng": 7.35258
+  },
+  {
+    "name": "Hanau",
+    "slug": "hanau",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Schwerin",
+    "slug": "schwerin",
+    "lat": 53.62937,
+    "lng": 11.41316
+  },
+  {
+    "name": "Gera",
+    "slug": "gera",
+    "lat": 50.88029,
+    "lng": 12.08187
+  },
+  {
+    "name": "Esslingen am Neckar",
+    "slug": "esslingen-am-neckar",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Ludwigsburg",
+    "slug": "ludwigsburg",
+    "lat": 48.89731,
+    "lng": 9.19161
+  },
+  {
+    "name": "Iserlohn",
+    "slug": "iserlohn",
+    "lat": 51.37547,
+    "lng": 7.70281
+  },
+  {
+    "name": "Düren",
+    "slug": "dueren",
+    "lat": 50.80434,
+    "lng": 6.49299
+  },
+  {
+    "name": "Tübingen",
+    "slug": "tuebingen",
+    "lat": 48.52266,
+    "lng": 9.05222
+  },
+  {
+    "name": "Zwickau",
+    "slug": "zwickau",
+    "lat": 50.72724,
+    "lng": 12.48839
+  },
+  {
+    "name": "Flensburg",
+    "slug": "flensburg",
+    "lat": 54.78805,
+    "lng": 9.43722
+  },
+  {
+    "name": "Gießen",
+    "slug": "giessen",
+    "lat": 50.58727,
+    "lng": 8.67554
+  },
+  {
+    "name": "Ratingen",
+    "slug": "ratingen",
+    "lat": 51.29724,
+    "lng": 6.84929
+  },
+  {
+    "name": "Lünen",
+    "slug": "luenen",
+    "lat": 51.61634,
+    "lng": 7.52872
+  },
+  {
+    "name": "Villingen-Schwenningen",
+    "slug": "villingen-schwenningen",
+    "lat": 48.06226,
+    "lng": 8.49358
+  },
+  {
+    "name": "Konstanz",
+    "slug": "konstanz",
+    "lat": 47.66033,
+    "lng": 9.17582
+  },
+  {
+    "name": "Marl",
+    "slug": "marl",
+    "lat": 51.65671,
+    "lng": 7.09038
+  },
+  {
+    "name": "Worms",
+    "slug": "worms",
+    "lat": 49.63278,
+    "lng": 8.35916
+  },
+  {
+    "name": "Velbert",
+    "slug": "velbert",
+    "lat": 51.33537,
+    "lng": 7.04348
+  },
+  {
+    "name": "Minden",
+    "slug": "minden",
+    "lat": 52.28953,
+    "lng": 8.91455
+  },
+  {
+    "name": "Neumünster",
+    "slug": "neumuenster",
+    "lat": 54.07399,
+    "lng": 9.98456
+  },
+  {
+    "name": "Dessau-Roßlau",
+    "slug": "dessau-rosslau",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Norderstedt",
+    "slug": "norderstedt",
+    "lat": 53.70177,
+    "lng": 9.99328
+  },
+  {
+    "name": "Delmenhorst",
+    "slug": "delmenhorst",
+    "lat": 53.0511,
+    "lng": 8.63091
+  },
+  {
+    "name": "Bamberg",
+    "slug": "bamberg",
+    "lat": 49.89873,
+    "lng": 10.90067
+  },
+  {
+    "name": "Viersen",
+    "slug": "viersen",
+    "lat": 51.25435,
+    "lng": 6.39441
+  },
+  {
+    "name": "Marburg",
+    "slug": "marburg",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Rheine",
+    "slug": "rheine",
+    "lat": 52.28509,
+    "lng": 7.44055
+  },
+  {
+    "name": "Gladbeck",
+    "slug": "gladbeck",
+    "lat": 51.57077,
+    "lng": 6.98593
+  },
+  {
+    "name": "Troisdorf",
+    "slug": "troisdorf",
+    "lat": 50.80901,
+    "lng": 7.14968
+  },
+  {
+    "name": "Dorsten",
+    "slug": "dorsten",
+    "lat": 51.66166,
+    "lng": 6.96514
+  },
+  {
+    "name": "Detmold",
+    "slug": "detmold",
+    "lat": 51.93855,
+    "lng": 8.87318
+  },
+  {
+    "name": "Arnsberg",
+    "slug": "arnsberg",
+    "lat": 51.38333,
+    "lng": 8.08333
+  },
+  {
+    "name": "Castrop-Rauxel",
+    "slug": "castrop-rauxel",
+    "lat": 51.55657,
+    "lng": 7.31155
+  },
+  {
+    "name": "Lüdenscheid",
+    "slug": "luedenscheid",
+    "lat": 51.21977,
+    "lng": 7.6273
+  },
+  {
+    "name": "Landshut",
+    "slug": "landshut",
+    "lat": 48.52961,
+    "lng": 12.16179
+  },
+  {
+    "name": "Brandenburg an der Havel",
+    "slug": "brandenburg-an-der-havel",
+    "lat": 52.41667,
+    "lng": 12.55
+  },
+  {
+    "name": "Aschaffenburg",
+    "slug": "aschaffenburg",
+    "lat": 49.97704,
+    "lng": 9.15214
+  },
+  {
+    "name": "Bocholt",
+    "slug": "bocholt",
+    "lat": 51.83879,
+    "lng": 6.61531
+  },
+  {
+    "name": "Celle",
+    "slug": "celle",
+    "lat": 52.62264,
+    "lng": 10.08047
+  },
+  {
+    "name": "Kempten",
+    "slug": "kempten",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Fulda",
+    "slug": "fulda",
+    "lat": 50.55162,
+    "lng": 9.67518
+  },
+  {
+    "name": "Aalen",
+    "slug": "aalen",
+    "lat": 48.83777,
+    "lng": 10.0933
+  },
+  {
+    "name": "Lippstadt",
+    "slug": "lippstadt",
+    "lat": 51.67369,
+    "lng": 8.34482
+  },
+  {
+    "name": "Dinslaken",
+    "slug": "dinslaken",
+    "lat": 51.56227,
+    "lng": 6.7434
+  },
+  {
+    "name": "Herford",
+    "slug": "herford",
+    "lat": 52.11457,
+    "lng": 8.67343
+  },
+  {
+    "name": "Kerpen",
+    "slug": "kerpen",
+    "lat": 50.86991,
+    "lng": 6.69691
+  },
+  {
+    "name": "Rüsselsheim am Main",
+    "slug": "ruesselsheim-am-main",
+    "lat": 49.98955,
+    "lng": 8.42251
+  },
+  {
+    "name": "Weimar",
+    "slug": "weimar",
+    "lat": 50.9803,
+    "lng": 11.32903
+  },
+  {
+    "name": "Sindelfingen",
+    "slug": "sindelfingen",
+    "lat": 48.7,
+    "lng": 9.01667
+  },
+  {
+    "name": "Neuwied",
+    "slug": "neuwied",
+    "lat": 50.4336,
+    "lng": 7.47057
+  },
+  {
+    "name": "Plauen",
+    "slug": "plauen",
+    "lat": 50.4973,
+    "lng": 12.13782
+  },
+  {
+    "name": "Dormagen",
+    "slug": "dormagen",
+    "lat": 51.09683,
+    "lng": 6.83167
+  },
+  {
+    "name": "Greifswald",
+    "slug": "greifswald",
+    "lat": 51.1657,
+    "lng": 10.4515
+  },
+  {
+    "name": "Rosenheim",
+    "slug": "rosenheim",
+    "lat": 47.85637,
+    "lng": 12.12247
+  },
+  {
+    "name": "Herten",
+    "slug": "herten",
+    "lat": 51.59638,
+    "lng": 7.14387
+  },
+  {
+    "name": "Bergheim",
+    "slug": "bergheim",
+    "lat": 48.31956,
+    "lng": 10.8205
+  },
+  {
+    "name": "Schwäbisch Gmünd",
+    "slug": "schwaebisch-gmuend",
+    "lat": 48.79947,
+    "lng": 9.79809
+  },
+  {
+    "name": "Friedrichshafen",
+    "slug": "friedrichshafen",
+    "lat": 47.65689,
+    "lng": 9.47554
+  },
+  {
+    "name": "Garbsen",
+    "slug": "garbsen",
+    "lat": 52.41961,
+    "lng": 9.6033
+  },
+  {
+    "name": "Wesel",
+    "slug": "wesel",
+    "lat": 51.6669,
+    "lng": 6.62037
+  },
+  {
+    "name": "Hameln",
+    "slug": "hameln",
+    "lat": 52.10397,
+    "lng": 9.35623
+  },
+  {
+    "name": "Hürth",
+    "slug": "huerth",
+    "lat": 50.87079,
+    "lng": 6.86761
+  },
+  {
+    "name": "Stralsund",
+    "slug": "stralsund",
+    "lat": 54.30911,
+    "lng": 13.0818
+  },
+  {
+    "name": "Offenburg",
+    "slug": "offenburg",
+    "lat": 48.47377,
+    "lng": 7.94495
+  },
+  {
+    "name": "Görlitz",
+    "slug": "goerlitz",
+    "lat": 51.15518,
+    "lng": 14.98853
+  },
+  {
+    "name": "Langenfeld",
+    "slug": "langenfeld",
+    "lat": 49.61667,
+    "lng": 10.51667
+  },
+  {
+    "name": "Stolberg",
+    "slug": "stolberg",
+    "lat": 50.77368,
+    "lng": 6.22595
+  },
+  {
+    "name": "Euskirchen",
+    "slug": "euskirchen",
+    "lat": 50.66057,
+    "lng": 6.78722
+  },
+  {
+    "name": "Göppingen",
+    "slug": "goeppingen",
+    "lat": 48.70354,
+    "lng": 9.65209
+  }
+]
