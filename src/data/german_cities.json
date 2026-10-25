@@ -14,8 +14,8 @@
   {
     "name": "München",
     "slug": "muenchen",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 48.1351,
+    "lng": 11.582
   },
   {
     "name": "Köln",
@@ -80,8 +80,8 @@
   {
     "name": "Nürnberg",
     "slug": "nuernberg",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 49.4521,
+    "lng": 11.0767
   },
   {
     "name": "Duisburg",
@@ -194,8 +194,8 @@
   {
     "name": "Freiburg im Breisgau",
     "slug": "freiburg-im-breisgau",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 47.999,
+    "lng": 7.8421
   },
   {
     "name": "Krefeld",
@@ -272,8 +272,8 @@
   {
     "name": "Mülheim an der Ruhr",
     "slug": "muelheim-an-der-ruhr",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 51.4267,
+    "lng": 6.8828
   },
   {
     "name": "Oldenburg",
@@ -344,8 +344,8 @@
   {
     "name": "Offenbach am Main",
     "slug": "offenbach-am-main",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 50.1006,
+    "lng": 8.7668
   },
   {
     "name": "Fürth",
@@ -500,8 +500,8 @@
   {
     "name": "Hanau",
     "slug": "hanau",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 50.1328,
+    "lng": 8.9169
   },
   {
     "name": "Schwerin",
@@ -518,8 +518,8 @@
   {
     "name": "Esslingen am Neckar",
     "slug": "esslingen-am-neckar",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 48.7428,
+    "lng": 9.3072
   },
   {
     "name": "Ludwigsburg",
@@ -620,8 +620,8 @@
   {
     "name": "Dessau-Roßlau",
     "slug": "dessau-rosslau",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 51.8386,
+    "lng": 12.2456
   },
   {
     "name": "Norderstedt",
@@ -650,8 +650,8 @@
   {
     "name": "Marburg",
     "slug": "marburg",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 50.809,
+    "lng": 8.7707
   },
   {
     "name": "Rheine",
@@ -734,8 +734,8 @@
   {
     "name": "Kempten",
     "slug": "kempten",
-    "lat": 51.1657,
-    "lng": 10.4515
+    "lat": 47.7286,
+    "lng": 10.3158
   },
   {
     "name": "Fulda",
@@ -848,8 +848,8 @@
   {
     "name": "Garbsen",
     "slug": "garbsen",
-    "lat": 52.4196,
-    "lng": 9.6033
+    "lat": 52.418,
+    "lng": 9.598
   },
   {
     "name": "Wesel",

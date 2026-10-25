@@ -197,7 +197,7 @@ const otherCities = cities.filter(c => c.slug !== city.slug).slice(0, 8);
 
       const markers = L.layerGroup().addTo(map);
       const API_KEY = '00000000-0000-0000-0000-000000000002';
-      const url = `https://creativecommons.tankerkoenig.de/json/list.php?lat=${cityLat}&lng=${cityLng}&rad=6&sort=dist&type=all&apikey=${API_KEY}`;
+      const url = `https://creativecommons.tankerkoenig.de/json/list.php?lat=${cityLat}&lng=${cityLng}&rad=10&sort=dist&type=all&apikey=${API_KEY}`;
 
       fetch(url)
         .then(res => res.json())
