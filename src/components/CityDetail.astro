@@ -124,6 +124,10 @@ const otherCities = cities.filter(c => c.slug !== city.slug).slice(0, 8);
       <div id="city-stations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Dynamically loaded via client script -->
       </div>
+      <div class="mt-4 pt-3 border-t border-zinc-800/80 flex flex-wrap items-center justify-between text-xs text-zinc-500 gap-2">
+        <span>Datenquelle: <strong>Markttransparenzstelle für Kraftstoffe (MTS-K)</strong> via <a href="https://www.tankerkoenig.de" target="_blank" rel="noopener" class="text-zinc-400 hover:text-emerald-400 underline">Tankerkönig</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" class="text-zinc-400 hover:text-emerald-400 underline">CC BY 4.0</a>)</span>
+        <span>Preise in Euro pro Liter, inkl. MwSt.</span>
+      </div>
     </div>
   </section>
 
@@ -196,7 +200,7 @@ const otherCities = cities.filter(c => c.slug !== city.slug).slice(0, 8);
       }).addTo(map);
 
       const markers = L.layerGroup().addTo(map);
-      const API_KEY = '00000000-0000-0000-0000-000000000002';
+      const API_KEY = '1104bdf4-fdf2-4457-bc9e-60d92753a9d6';
       const url = `https://creativecommons.tankerkoenig.de/json/list.php?lat=${cityLat}&lng=${cityLng}&rad=10&sort=dist&type=all&apikey=${API_KEY}`;
 
       function resolvePrice(station, fuel) {
@@ -215,7 +219,7 @@ const otherCities = cities.filter(c => c.slug !== city.slug).slice(0, 8);
           else if (brand.includes('jet') || brand.includes('hem') || brand.includes('total') || brand.includes('bk')) brandDelta = -0.02;
           return Number((base + brandDelta + variance).toFixed(3));
         }
-        return raw;
+        return Number(typeof raw === 'number' ? raw.toFixed(3) : parseFloat(raw).toFixed(3));
       }
 
       fetch(url)
